@@ -1,3 +1,7 @@
+export var seed=new URL(location).searchParams.get('seed')
+if(!seed) seed=Math.random().toString(36).substring(7)
+Math.seedrandom(seed)
+
 export function shuffle(array,clone=false){//adapted from https://stackoverflow.com/a/6274381
   if(clone) array=Array.from(array)
   for(let i=array.length-1;i>0;i--) {

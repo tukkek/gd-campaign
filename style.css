@@ -1,3 +1,4 @@
 h2,h3{text-decoration:underline;}
 .bounty{cursor:pointer;}
 .bounty.crossed{text-decoration:line-through;}
+.bounty strong{pointer-events:none;}

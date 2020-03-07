@@ -6,6 +6,15 @@ function cross(event){
     bounty.classList.remove('crossed')
   else
     bounty.classList.add('crossed')
+  let total=0
+  for(let c of document.querySelectorAll('.crossed'))
+    total+=c.points
+  if(total==0) return
+  total+=' points total.'
+  Notification.requestPermission()
+  if(Notification.permission=='granted')
+    new Notification(total)
+  else alert(total)
 }
 
 export class Bounties{
@@ -29,10 +38,12 @@ export class Bounties{
       let points=this.points[b]||rpg.roll(1,4)-1
       if(this.points[b]===0||points==0) continue
       sum+=points
+      if(this.cumulative) points=sum
       let li=document.createElement('li')
-      li.innerHTML=`${b} (<strong>${this.cumulative?sum:points} points</strong>)`
+      li.innerHTML=`${b} (<strong>${points} points</strong>)`
       li.onclick=cross
       li.classList.add('bounty')
+      li.points=points
       bounties.appendChild(li)
     }
     if(bounties.childNodes.length==0){
