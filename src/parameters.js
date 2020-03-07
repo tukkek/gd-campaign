@@ -30,20 +30,16 @@ export var stash=new class extends Parameter{
   constructor(){super('Use of the shared stash',['allowed'])} //TODO
 }
 
-export var devotion=new class extends Parameter{//TODO probably not fun
-  constructor(){super('Maximum devotion',[55,50,40,30,20,10,0])}
-}
-
 export var masteries=new class extends Parameter{
   constructor(){super('Allowed masteries',MASTERIES)}
   
   generate(){
     let d=super.generate()
-    let a=rpg.roll(0,this.options.length-1)
-    let b=rpg.roll(0,this.options.length-1)
-    let nmasteries=Math.max(a,b)
-    if(nmasteries<2) nmasteries=2
+    let a=rpg.roll(2,this.options.length-1)
+    let b=rpg.roll(2,this.options.length-1)
+    let nmasteries=Math.min(a,b)
     let allowed=rpg.shuffle(this.options).slice(0,nmasteries)
+    //let allowed=rpg.shuffle(this.options).slice(0,rpg.roll(2,this.options.length-1))
     allowed.sort()
     allowed=allowed.join(', ')
     d.innerHTML=`<strong>${this.name}</strong> for this campaign are: <strong>${allowed}</strong>.`
@@ -51,8 +47,4 @@ export var masteries=new class extends Parameter{
   }
 }
 
-export var hardcore=new class extends Parameter{//TODO probably not fun
-  constructor(){super('Harcore',['not active'])} //TODO
-}
-
-export var all=[masteries,hardcore,crafting,stash]
+export var all=[masteries]//,crafting,stash]

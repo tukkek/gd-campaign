@@ -8,7 +8,7 @@ export class Act extends bounties.Bounties{
   }
   
   generate(){
-    for(let f of this.factions){
+    for(let f of this.factions.reverse()){
       let bounty=f.generate()
       this.points[bounty]=f.points
       if(bounty) this.bounties.unshift(bounty)
@@ -24,17 +24,21 @@ export var act1=new class extends Act{
 export var act2=new class extends Act{
   constructor(){super('Act 2',
     ['Clear Steps of Torment','Defeat Darius Cronley'],
-    [new faction.Faction("Rovers")])}
+    [new faction.Faction("Rovers"),
+      new faction.Faction("Cronley's Gang",false),new faction.Faction("Arkovian Undead",false),])}
 }
 
 export var act3=new class extends Act{
   constructor(){
     super('Act 3',['Clear Port Valbury','Defeat Zaria, the Carver'],
-      [new faction.Faction("Kymon's Chosen",true),
+      [new faction.Faction("Homestead",true),
+      new faction.Faction("Kymon's Chosen",true),
       new faction.Faction("Kymon's Chosen",false),
       new faction.Faction("Order of Death's Vigil",true),
       new faction.Faction("Order of Death's Vigil",false),
-      new faction.Faction("Homestead",true),])
+      new faction.Faction("Aetherials",false),
+      new faction.Faction("Cthonians",false),
+      new faction.Faction("Beasts",false),])
   }
 }
 
@@ -42,7 +46,9 @@ export var act4=new class extends Act{
   constructor(){
     super('Act 4',['Clear Bastion of Chaos',"Defeat Loghorrean, the Voice of Ch'thon"],
       [new faction.Faction("The Black Legion"),
-      new faction.Faction("The Outcast",true),new faction.Faction("The Outcast",false)])
+      new faction.Faction("The Outcast",true),
+      new faction.Faction("The Outcast",false),
+      new faction.Faction("Aetherial Vanguard",false),])
   }
 }
 
@@ -66,7 +72,8 @@ export var act7=new class extends Act{
     super('Act 7',["Defeat Korvaak, the Eldritch Sun",'Clear Tomb of the Heretic'],
       [new faction.Faction("Cult of Bysmiel"),
       new faction.Faction("Cult of Dreeg"),
-      new faction.Faction("Cult of Solael"),])
+      new faction.Faction("Cult of Solael"),
+      new faction.Faction("Eldritch Horrors",false),])
   }
 }
 

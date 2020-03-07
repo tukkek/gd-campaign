@@ -13,7 +13,6 @@ export class Faction{
   generate(){
     let i=0
     while(i<this.reputation.length-1&&rpg.chancein(2)) i+=1
-    //console.log(this.name,this.points,Math.pow(2,i))
     this.points*=i//Math.pow(2,i)
     return `Reach ${this.reputation[i].toUpperCase()} with ${this.name}`
   }

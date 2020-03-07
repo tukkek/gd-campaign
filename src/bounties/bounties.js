@@ -1,5 +1,13 @@
 import * as rpg from '../rpg.js'
 
+function cross(event){
+  let bounty=event.target
+  if(bounty.classList.contains('crossed'))
+    bounty.classList.remove('crossed')
+  else
+    bounty.classList.add('crossed')
+}
+
 export class Bounties{
   constructor(name,bounties=[],cumulative=false){
     this.name=name
@@ -23,6 +31,8 @@ export class Bounties{
       sum+=points
       let li=document.createElement('li')
       li.innerHTML=`${b} (<strong>${this.cumulative?sum:points} points</strong>)`
+      li.onclick=cross
+      li.classList.add('bounty')
       bounties.appendChild(li)
     }
     if(bounties.childNodes.length==0){

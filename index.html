@@ -12,6 +12,7 @@
       <p>This Grim Dawn challenge run generator proposes a set of parameters and bounties for players to follow either casually or in a competitive environment.</p>
       <p>For casual play, the rules are obviously relaxed and mere suggestions but a more strict ruleset would be:</p>
       <ul>
+        <li>Players must create brand-new characters starting at level 1.</li>
         <li>Players have 72 hours as of the publication of a campaign to get as many points as possible.</li>
         <li>All players must post a <a href='https://www.grimtools.com/calc/' target='_blank'>Grim Tools</a> profile of their build upon completion.</li>
         <li>Players should also post all the bounties they have completed and the highest difficulty they were completed at.</li>
@@ -47,6 +48,8 @@
     import * as parameters from './src/parameters.js'
     import * as crucible from './src/bounties/crucible.js'
     import * as sr from './src/bounties/shattered-realm.js'
+    import * as bosses from './src/bounties/boss.js'
+    import * as bonuses from './src/bounties/bonuses.js'
     import * as act from './src/bounties/story/act.js'
     document.querySelector('#generated').innerHTML=`Generated on ${date}.`
     /*let current=location.href.replace(location.search,'').replace(location.hash,'')
@@ -59,7 +62,7 @@
     //console.log(act1.act1.generate())
     for(let b of act.all)
       document.querySelector('#bounties').appendChild(b.generate())
-    for(let b of parameters.bonuses)
-      document.querySelector('#bonuses').appendChild(b.generate())
+    document.querySelector('#bounties').appendChild(bosses.bosses.generate())
+    document.querySelector('#bounties').appendChild(bonuses.bonuses.generate())
   </script>
 </html>
