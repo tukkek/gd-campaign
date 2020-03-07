@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Grim Dawn campaign</title>
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='style.css'>
+  </head>
+  <body>
+    <h1>Grim Dawn campaign</h1>
+    <div id='intro'>
+      <h2>Introduction</h2>
+      <p>This Grim Dawn challenge run generator proposes a set of parameters and bounties for players to follow either casually or in a competitive environment.</p>
+      <p>For casual play, the rules are obviously relaxed and mere suggestions but a more strict ruleset would be:</p>
+      <ul>
+        <li>Players have 72 hours as of the publication of a campaign to get as many points as possible.</li>
+        <li>All players must post a <a href='https://www.grimtools.com/calc/' target='_blank'>Grim Tools</a> profile of their build upon completion.</li>
+        <li>Players should also post all the bounties they have completed and the highest difficulty they were completed at.</li>
+        <li>Without other way to ensure fidelity, anyone accused of cheating, with no video footage to back their run, is disqualified.</li>
+        <li>Given the former point, participation and discussion is encouraged for all and accusation requires probable-cause merits.</li>
+        <li>Completion reports must be replies on the same social media where the campaign was originally posted.</li>
+        <li>If you edit your report at any point you risk disqualification. Prefer to post a new reply instead, if corrections are needed.</li>
+        <li>Each campaign report must be played with a single character.</li>
+        <li>Please calculate your own total points when submitting your report, as it's easier to verify.</li>
+        <li>Don't forget to post a link to you video footage with you report, if you have it!</li>
+        <li>For team-based campaigns, each player can only play a single character on any given team, up to maximum team size.</li>
+      </ul>
+      <p>The bounty points are randomized to a degree and are not meant to be "balanced" but instead to reward players for planning their routes ahead of time and adjusting them on-the-fly as needed. Game knowledge is as much a skill as speed or execution.</p>
+      <p>Each bounty will only be counted once but completing the bounty (again or for the first time) on higher difficulties will reward you with <strong>x2 bounty points for Elite</strong> and <strong>x4 bounty points for Ultimate</strong> - with Aspirant, Challenger and Gladiator being the Crucible equivalent of Normal/Veteran, Elite and Ultimate.</p>
+    </div>
+    <div id='campaign'>
+      <h2>Campaign</h2>
+      <em id='generated'></em>
+      <!--p><a id='new'>This link</a> will generate a new challenge.</p>
+      <p><a id='this'>This link</a> can be shared and will lead back to this challenge (future updates may invalidate old links).</p-->
+      <p>Refresh this page to generate a new campaign. For now, use the <a onclick='print();' href='#'>print</a> function to save a permanent copy of this compaign.</p>
+    </div>
+    <div>
+      <h3>Setup</h3>
+      <ul id='parameters'></ul>
+    </div>
+    <div id='bounties'>
+      <h3>Bounties</h3>
+    </div>
+  </body>
+  <script type='module'>
+  let date=new Date().toGMTString()
+    import * as parameters from './src/parameters.js'
+    import * as crucible from './src/bounties/crucible.js'
+    import * as sr from './src/bounties/shattered-realm.js'
+    import * as act from './src/bounties/story/act.js'
+    document.querySelector('#generated').innerHTML=`Generated on ${date}.`
+    /*let current=location.href.replace(location.search,'').replace(location.hash,'')
+    document.querySelector('#new').href=current
+    document.querySelector('#this').href=current+'?seed=0'*/
+    for(let p of parameters.all)
+      document.querySelector('#parameters').appendChild(p.generate())
+    for(let b of [crucible.crucible,sr.sr])
+      document.querySelector('#bounties').appendChild(b.generate())
+    //console.log(act1.act1.generate())
+    for(let b of act.all)
+      document.querySelector('#bounties').appendChild(b.generate())
+    for(let b of parameters.bonuses)
+      document.querySelector('#bonuses').appendChild(b.generate())
+  </script>
+</html>

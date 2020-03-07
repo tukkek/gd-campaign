@@ -1,0 +1,2 @@
+- bonuses (characters below X level/devotions/time played get double the points)
+- enemy factions
